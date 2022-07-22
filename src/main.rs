@@ -2,10 +2,6 @@ use bevy::prelude::*;
 
 fn main() {
     App::new()
-        .add_system(test_system)
+        .add_plugins(DefaultPlugins)
         .run();
-}
-
-fn test_system() {
-    println!("Testing");
 }
