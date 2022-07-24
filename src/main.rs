@@ -1,6 +1,6 @@
 mod entities;
 
-use crate::entities::component;
+// use crate::entities::component;
 use bevy::prelude::*;
 
 fn main() {
