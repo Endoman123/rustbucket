@@ -1,5 +1,5 @@
-mod systems;
 mod entities;
+mod systems;
 
 use bevy::prelude::*;
 use entities::components::*;
@@ -13,15 +13,15 @@ fn main() {
         .run();
 }
 
-
 fn setup(mut commands: Commands, asset_server: Res<AssetServer>) {
     commands.spawn_bundle(OrthographicCameraBundle::new_2d());
-    commands.spawn()
+    commands
+        .spawn()
         .insert_bundle(SpriteBundle {
             texture: asset_server.load("test.png"),
             ..default()
         })
         .insert(Player {
-            speed: 420.69_f32 // nice
+            speed: 300_f32, // down bad lord
         });
 }
