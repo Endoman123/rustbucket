@@ -21,7 +21,8 @@ fn setup(mut commands: Commands, asset_server: Res<AssetServer>) {
             texture: asset_server.load("test.png"),
             ..default()
         })
-        .insert(Player {
+        .insert(Player)
+        .insert(MoveSpeed {
             speed: 420.69_f32 // nice
         });
 }

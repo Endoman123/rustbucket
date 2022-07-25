@@ -5,11 +5,11 @@ use crate::entities::components::*;
 pub fn move_player(
     time: Res<Time>,
     keyboard_input: Res<Input<KeyCode>>,
-    mut query: Query<(&mut Transform, &Player)>
+    mut query: Query<(&mut Transform, &MoveSpeed), With<Player>>
 ) {
-    let (mut transform, player) = query.single_mut();
+    let (mut transform, speed) = query.single_mut();
 
-    let speed: f32 = player.speed as f32;
+    let speed: f32 = speed.speed as f32;
     let dx: f32 = (keyboard_input.pressed(KeyCode::D) as i32 - keyboard_input.pressed(KeyCode::A) as i32) as f32;
     let dy: f32 = (keyboard_input.pressed(KeyCode::W) as i32 - keyboard_input.pressed(KeyCode::S) as i32) as f32;
 
