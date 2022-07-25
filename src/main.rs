@@ -35,8 +35,9 @@ fn setup(mut commands: Commands, asset_server: Res<AssetServer>) {
             texture: asset_server.load("happy.png"),
             ..default()
         })
-        .insert(Lifetime {
-            lifetime: 3_f32,
-            current: 0_f32,
-        });
+        .insert(Health {
+            max: 3_f32,
+            current: 3_f32,
+        })
+        .insert(Decay::default());
 }

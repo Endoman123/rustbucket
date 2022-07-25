@@ -14,10 +14,15 @@ pub struct RotationSpeed {
     pub speed: f32,
 }
 
-#[derive(Component)]
-pub struct Lifetime {
-    pub lifetime: f32,
+#[derive(Component, Default)]
+pub struct Health {
+    pub max: f32,
     pub current: f32,
+}
+
+#[derive(Component)]
+pub struct Decay {
+    pub rate: f32
 }
 
 #[derive(Bundle)]
@@ -38,6 +43,14 @@ impl Default for PlayerBundle {
             },
             sprite: Default::default(),
             _p: Default::default()
+        }
+    }
+}
+
+impl Default for Decay {
+    fn default() -> Self {
+        Decay {
+            rate: 1_f32
         }
     }
 }

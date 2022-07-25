@@ -26,11 +26,13 @@ pub fn move_player(
 pub fn lifetime_system(
     mut commands: Commands,
     time: Res<Time>,
-    mut query: Query<(Entity, &mut Lifetime)>,
+    mut query: Query<(Entity, &mut Health, &Decay)>,
 ) {
-    for (ent, mut life) in query.iter_mut() {
-        life.current += time.delta_seconds();
-        if life.current >= life.lifetime {
+    for (ent, mut health, decay) in query.iter_mut() {
+
+        health.current -= time.delta_seconds() * decay.rate;
+
+        if health.current <= 0_f32 {
             commands.entity(ent).despawn();
         }
     }
