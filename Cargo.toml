@@ -1,5 +1,5 @@
 [package]
-name = "hold-my-coffee-2"
+name = "rustbucket"
 version = "0.1.0"
 edition = "2021"
 
