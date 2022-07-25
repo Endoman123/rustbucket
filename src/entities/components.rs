@@ -6,10 +6,16 @@ pub struct Player;
 
 #[derive(Component)]
 pub struct MoveSpeed {
-    pub speed: f32
+    pub speed: f32,
 }
 
 #[derive(Component)]
 pub struct RotationSpeed {
-    pub speed: f32
+    pub speed: f32,
+}
+
+#[derive(Component)]
+pub struct Lifetime {
+    pub lifetime: f32,
+    pub current: f32,
 }
