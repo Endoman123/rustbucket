@@ -17,12 +17,14 @@ fn setup(mut commands: Commands, asset_server: Res<AssetServer>) {
     commands.spawn_bundle(OrthographicCameraBundle::new_2d());
     commands
         .spawn()
-        .insert_bundle(SpriteBundle {
-            texture: asset_server.load("test.png"),
+        .insert_bundle(PlayerBundle {
+            speed: MoveSpeed {
+                speed: 420.69
+            },
+            sprite: SpriteBundle {
+                texture: asset_server.load("test.png"),
+                ..default()
+            },
             ..default()
-        })
-        .insert(Player)
-        .insert(MoveSpeed {
-            speed: 420.69_f32 // nice
         });
 }
