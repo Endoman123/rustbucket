@@ -5,7 +5,7 @@ use crate::entities::components::*;
 pub fn move_player(
     time: Res<Time>,
     keyboard_input: Res<Input<KeyCode>>,
-    mut query: Query<(&mut Transform, &MoveSpeed), With<Player>>
+    mut query: Query<(&mut Transform, &MoveSpeed), With<Player>>,
 ) {
     let (mut transform, speed) = query.single_mut();
 
@@ -21,4 +21,17 @@ pub fn move_player(
 
     transform.translation.x += dv.x * dt * speed;
     transform.translation.y += dv.y * dt * speed;
+}
+
+pub fn lifetime_system(
+    mut commands: Commands,
+    time: Res<Time>,
+    mut query: Query<(Entity, &mut Lifetime)>,
+) {
+    for (ent, mut life) in query.iter_mut() {
+        life.current += time.delta_seconds();
+        if life.current >= life.lifetime {
+            commands.entity(ent).despawn();
+        }
+    }
 }

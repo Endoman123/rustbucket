@@ -10,6 +10,7 @@ fn main() {
         .add_plugins(DefaultPlugins)
         .add_startup_system(setup)
         .add_system(move_player)
+        .add_system(lifetime_system)
         .run();
 }
 
@@ -26,5 +27,16 @@ fn setup(mut commands: Commands, asset_server: Res<AssetServer>) {
                 ..default()
             },
             ..default()
+        });
+
+    commands
+        .spawn()
+        .insert_bundle(SpriteBundle {
+            texture: asset_server.load("happy.png"),
+            ..default()
+        })
+        .insert(Lifetime {
+            lifetime: 3_f32,
+            current: 0_f32,
         });
 }
